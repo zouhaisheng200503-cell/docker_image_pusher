@@ -1,7 +1,8 @@
-docker.io/dyrnq/tektoncd-pipeline-cmd-controller:v0.50.5
-docker.io/dyrnq/tektoncd-pipeline-cmd-events:v0.50.5
-docker.io/dyrnq/tektoncd-pipeline-cmd-resolvers:v0.50.5
-docker.io/dyrnq/tektoncd-pipeline-cmd-webhook:v0.50.5
-docker.io/dyrnq/tektoncd-dashboard-cmd-dashboard:v0.34.0
-registry.k8s.io/ingress-nginx/controller:v1.8.1
-registry.k8s.io/ingress-nginx/kube-webhook-certgen:v20230407
+# 1. 直接拉取 Google 的官方原始镜像（在 GitHub 机器上只需 1 秒钟）
+docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/events:v0.50.5
+
+# 2. 将官方镜像重新打 Tag，变成你的阿里云专属镜像路径（注意替换你的命名空间）
+docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/events:v0.50.5 registry.cn-hangzhou.aliyuncs.com/<这里换成你的命名空间>/tekton-events:v0.50.5
+
+# 3. 推送到你自己的阿里云仓库
+docker push registry.cn-hangzhou.aliyuncs.com/<这里换成你的命名空间>/tekton-events:v0.50.5
